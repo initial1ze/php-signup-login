@@ -75,7 +75,7 @@ form input[type="submit"] {
 .logout-btn {
     padding: 10px;
     color: whitesmoke;
-    background-color: #4CAF50;
+    background-color: rgb(246, 77, 77);
     font-size: 17px;
     font-weight: 500;
     border-radius: 5px;

@@ -5,7 +5,7 @@ body {
 .form-container {
     width: 30%;
     margin: 0 auto;
-    margin-top: 10%;
+    margin-top: 5%;
     background-color: white;
 }
 
@@ -39,4 +39,49 @@ form input[type="submit"] {
     text-decoration: none;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.failure {
+    margin: 0 auto;
+    width: 29%;
+    padding: 10px;
+    margin-top: 30px;
+    background-color: rgb(237, 65, 82);
+    color: whitesmoke;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    /* font-weight: bold; */
+}
+
+.dashboard {
+    margin: auto 10%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.success {
+    width: 29%;
+    padding: 10px;
+    margin-top: 30px;
+    border-radius: 5px;
+    color: whitesmoke;
+    background-color: rgb(30, 151, 42);
+    font-size: 17px;
+}
+
+
+h1 {
+    margin: auto 10%;
+}
+
+.logout-btn {
+    margin: 0 auto;
+    width: 10%;
+    padding: 10px;
+    color: whitesmoke;
+    background-color: #4CAF50;
+    font-size: 17px;
+    font-weight: 500;
 }

@@ -71,11 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="form-container">
         <form action="login.php" method="post">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Email" required>
-            <br>
+            <input type="email" id="email" name="email" placeholder="Email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
-            <br>
+
             <input type="submit" value="Log In">
 
             <p>Don't have an account? <a href="signup.php">Sign Up</a></p>

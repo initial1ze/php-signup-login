@@ -63,13 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="signup.php" method="post">
 
             <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="email" name="email" id="email" placeholder="Email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
 
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="password" name="password" id="password" placeholder="Password" required pattern=".{8,}" title="Eight or more characters">
 
             <label for="cnfPassword">Confirm Password:</label>
-            <input type="password" name="cnfPassword" id="cnfPassword" placeholder="Confirm Password" required>
+            <input type="password" name="cnfPassword" id="cnfPassword" placeholder="Confirm Password" required pattern=".{8,}" title="Eight or more characters">
 
 
             <input type="submit" value="Sign Up">

@@ -56,9 +56,9 @@ form input[type="submit"] {
 
 .dashboard {
     margin: auto 10%;
-    color: white;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .success {
@@ -72,16 +72,11 @@ form input[type="submit"] {
 }
 
 
-h1 {
-    margin: auto 10%;
-}
-
 .logout-btn {
-    margin: 0 auto;
-    width: 10%;
     padding: 10px;
     color: whitesmoke;
     background-color: #4CAF50;
     font-size: 17px;
     font-weight: 500;
+    border-radius: 5px;
 }

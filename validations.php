@@ -3,6 +3,10 @@ function validateSignUpForm($email, $password, $confirm_password)
 {
     $errors = [];
 
+    if (empty($email) || empty($password) || empty($confirm_password)) {
+        $errors[] = "All fields are required.";
+    }
+
     // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
@@ -24,6 +28,10 @@ function validateSignUpForm($email, $password, $confirm_password)
 function validateLoginForm($email)
 {
     $errors = [];
+
+    if (empty($email)) {
+        $errors[] = "All fields are required.";
+    }
 
     // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

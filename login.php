@@ -14,9 +14,11 @@ if (isset($_SESSION['registeration']) && isset($_GET['registration']) && $_GET['
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $email = $_POST['email'];
-
+    include_once("./db.php");
     include_once("./validations.php");
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
     $errors = validateLoginForm($email);
 
@@ -25,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<div class='failure'>$error</div>";
         }
     } else {
-        include_once("./db.php");
 
         $select_sql = "SELECT * FROM users WHERE email = ?";
         $user_exists_stmt = $conn->prepare($select_sql);
@@ -37,10 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
             $user_exists_stmt->close();
             $conn->close();
-
-            $password = $_POST['password'];
-
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
             if (password_verify($password, $user['password'])) {
                 session_start();

@@ -8,15 +8,13 @@ if (isset($_SESSION['email'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include_once("./db.php");
+    include_once("./validations.php");
 
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cnfPassword = $_POST['cnfPassword'];
-
-
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    include_once("./validations.php");
 
     $errors = validateSignUpForm($email, $password, $cnfPassword);
 
@@ -25,9 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<div class='failure'>$error</div>";
         }
     } else {
-
-        include_once("./db.php");
-
         $select_sql = "SELECT * FROM users WHERE email = ?";
         $user_exists_stmt = $conn->prepare($select_sql);
         $user_exists_stmt->bind_param("s", $email);

@@ -12,7 +12,7 @@ function validateSignUpForm($email, $password, $confirm_password)
         $errors[] = "Invalid email format.";
     }
 
-    // Validate password length (you can add more password requirements here)
+    // Validate password length
     if (strlen($password) < 8) {
         $errors[] = "Password must be at least 8 characters long.";
     }
@@ -25,11 +25,11 @@ function validateSignUpForm($email, $password, $confirm_password)
     return $errors;
 }
 
-function validateLoginForm($email)
+function validateLoginForm($email, $password)
 {
     $errors = [];
 
-    if (empty($email)) {
+    if (empty($email) || empty($password)) {
         $errors[] = "All fields are required.";
     }
 

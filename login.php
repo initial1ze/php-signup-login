@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['id'])) {
     header("Location: dashboard.php");
     exit();
 }
@@ -20,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $errors = validateLoginForm($email);
+    $errors = validateLoginForm($email, $password);
 
     if (count($errors) > 0) {
         foreach ($errors as $error) {
@@ -37,11 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
             $user_exists_stmt->close();
-            $conn->close();
 
             if (password_verify($password, $user['password'])) {
-                session_start();
-                $_SESSION['email'] = $user['email'];
+                $_SESSION['id'] = $user['id'];
                 header("Location: dashboard.php");
                 exit();
             } else {
@@ -76,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
 
-            <input type="submit" value="Log In">
+            <button type="submit">Login</button>
 
             <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
         </form>

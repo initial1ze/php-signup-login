@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['id'])) {
     header("Location: dashboard.php");
     exit();
 }
@@ -38,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("ss", $email, $hashedPassword);
             $stmt->execute();
             $stmt->close();
-            session_start();
             $_SESSION['registeration'] = true;
             header("Location: login.php?registration=success");
             exit();
@@ -71,8 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="cnfPassword">Confirm Password:</label>
             <input type="password" name="cnfPassword" id="cnfPassword" placeholder="Confirm Password" required pattern=".{8,}" title="Eight or more characters">
 
-
-            <input type="submit" value="Sign Up">
+            <button type="submit">Sign Up</button>
 
             <p> Already have an account? <a href="./login.php">Login</a></p>
         </form>

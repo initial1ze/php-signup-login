@@ -1,47 +1,8 @@
 <?php
-
 session_start();
 if (isset($_SESSION['id'])) {
     header("Location: dashboard.php");
     exit();
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include_once("./db.php");
-    include_once("./validations.php");
-
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $cnfPassword = $_POST['cnfPassword'];
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    $errors = validateSignUpForm($email, $password, $cnfPassword);
-
-    if (count($errors) > 0) {
-        foreach ($errors as $error) {
-            echo "<div class='failure'>$error</div>";
-        }
-    } else {
-        $select_sql = "SELECT * FROM users WHERE email = ?";
-        $user_exists_stmt = $conn->prepare($select_sql);
-        $user_exists_stmt->bind_param("s", $email);
-        $user_exists_stmt->execute();
-        $result = $user_exists_stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            echo "<div class='failure'>User already exists</div>";
-            $user_exists_stmt->close();
-        } else {
-            $insert_sql = "INSERT INTO users (email, password) VALUES (?, ?)";
-            $stmt = $conn->prepare($insert_sql);
-            $stmt->bind_param("ss", $email, $hashedPassword);
-            $stmt->execute();
-            $stmt->close();
-            $_SESSION['registeration'] = true;
-            header("Location: login.php?registration=success");
-            exit();
-        }
-    }
 }
 ?>
 
@@ -53,12 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <title>Sign Up</title>
 </head>
 
 <body>
+    <div class="info"></div>
     <div class="form-container">
-        <form action="signup.php" method="post">
+        <form action="signup.php" method="post" id="signupForm">
 
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" placeholder="Email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
@@ -74,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p> Already have an account? <a href="./login.php">Login</a></p>
         </form>
     </div>
+    <script src="./script.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action']) and !empty($_POST['action'])) {
 
     // Sign Up
     if ($_POST['action'] === 'signup') {
@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action'])) {
         }
 
         $response["errors"] = $errors;
+        header("Content-Type: application/json");
         echo (json_encode($response));
     }
 
@@ -85,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action'])) {
         }
 
         $response["errors"] = $errors;
+        header("Content-Type: application/json");
         echo (json_encode($response));
     }
 }

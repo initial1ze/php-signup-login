@@ -28,9 +28,6 @@ $('#signupForm').submit(function (e) {
             } catch (error) {
                 console.error(error);
             }
-        },
-        error: function (status, error) {
-            console.error("AJAX error:", status, error);
         }
     });
 });
@@ -65,9 +62,6 @@ $('#loginForm').submit(function (e) {
             } catch (error) {
                 console.error(error);
             }
-        },
-        error: function (status, error) {
-            console.error("AJAX error:", status, error);
         }
     });
 });

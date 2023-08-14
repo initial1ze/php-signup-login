@@ -42,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action']) and !empty
         }
 
         $response["errors"] = $errors;
-        header("Content-Type: application/json");
         echo (json_encode($response));
     }
 
@@ -86,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action']) and !empty
         }
 
         $response["errors"] = $errors;
-        header("Content-Type: application/json");
         echo (json_encode($response));
     }
 }

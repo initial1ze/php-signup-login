@@ -6,7 +6,7 @@ if (isset($_SESSION['id'])) {
     exit();
 }
 
-if (isset($_SESSION['registeration']) && isset($_GET['registration']) && $_GET['registration'] === 'success') {
+if (isset($_SESSION['registeration'])) {
     echo '<p class="success">Registration successful! You can now log in.</p>';
     unset($_SESSION['registeration']);
 }

@@ -16,8 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action']) and !empty
 
         $errors = validateSignUpForm($email, $password, $cnfPassword);
 
-        $response = array();
-        $response["success"] = false;
+        $response = array("success" => false);
 
         if (count($errors) === 0) {
             $select_sql = "SELECT * FROM users WHERE email = ?";
@@ -42,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action']) and !empty
         }
 
         $response["errors"] = $errors;
-        echo (json_encode($response));
+        exit(json_encode($response));
     }
 
     // Login
@@ -58,8 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action']) and !empty
 
         $errors = validateLoginForm($email, $password);
 
-        $response = array();
-        $response["success"] = false;
+        $response = array("success" => false);
 
         if (count($errors) === 0) {
             $select_sql = "SELECT * FROM users WHERE email = ?";
@@ -85,6 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" and isset($_POST['action']) and !empty
         }
 
         $response["errors"] = $errors;
-        echo (json_encode($response));
+        exit(json_encode($response));
     }
 }
